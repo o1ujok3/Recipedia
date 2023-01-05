@@ -63,8 +63,35 @@ header h3 {
 }
 
 .main-header {
-    padding: 10px 15px;
+    padding: 10px;
     display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+.search {
+    border-radius: 5px;
+    background-color: rgb(228, 222, 222);
 
+}
+
+.container {
+    padding: 20px;
+    display: flex;
+    justify-content:center;
+    gap: 30px;
+    
+    
+}
+
+.btn-search, .btn-store {
+    background-color: var(--orange);
+    border-radius: 5px;
+    padding-right: 20px;
+
+
+}
+
+.btn-search:hover, .btn-store:hover {
+background-color: #d17f32;
+}
