@@ -1,0 +1,70 @@
+:root {
+    --darkgreen: #296543;
+    --middlegreen: #63aa81;
+    --lightyellow: #FEFEE3;
+    --pink: #FFC9B9;
+    --orange: #D68C45;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: var(--lightyellow);
+
+}
+
+/*global classes*/
+.text-center {
+    text-align: center;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.row,
+.column {
+    display: flex;
+}
+
+.column {
+    flex-direction: column;
+}
+
+/* custom styling */
+
+header {
+margin: 30px;
+}
+
+header h1 {
+    color: var(--darkgreen);
+    padding: 5px;
+    font-weight: bolder;
+    font-size: 50px;
+
+}
+
+header h3 {
+    color: var(--middlegreen);
+    font-size: 20px;
+    font-family: 'Lucida Sans';
+}
+
+.main-header {
+    padding: 10px 15px;
+    display: flex;
+}
+
+
