@@ -24,6 +24,15 @@ body {
 
 }
 
+footer {
+    height: 95px;
+    background-color: #296543;
+    padding-left: 15px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
 /*global classes*/
 .text-center {
     text-align: center;
@@ -117,6 +126,18 @@ header h3 {
 
 .card-container .card {
     margin: 0% 5% 5% 5%;
+    background: var(--pink);
 }
+
+.btn-primary {
+    background-color: var(--orange);
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: var(--middlegreen);
+
+}
+
 
 
