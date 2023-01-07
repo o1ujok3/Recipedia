@@ -117,6 +117,14 @@ header h3 {
     border: 1px solid #dfe1e5;
 
 }
+.card {
+      box-shadow: 0px 6px 10px darkgrey;
+      transition: 1s;
+}
+.card:hover {
+    transform: scale(1.2);
+
+}
 
 .card-container {
     margin: 5% 0;
@@ -139,6 +147,6 @@ header h3 {
     background-color: var(--middlegreen);
 
 }
-
+/*responsive styling*/
 
 
