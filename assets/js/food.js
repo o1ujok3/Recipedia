@@ -39,7 +39,6 @@ function displayRecipe(recipeData){
     `);
 
     };
-
     
 };
 
@@ -51,8 +50,6 @@ function getRecipe(event){
         .then(function(recipeData){
             displayRecipe(recipeData);
 
-
-
             var dataHistory = recipeData.hits[0].recipe;
     
             localStorage.setItem(food, JSON.stringify(dataHistory));
@@ -62,14 +59,14 @@ function getRecipe(event){
                searchHistory.append(`
                   <button class='btn-search btn-history'>${food}</button>
             
-               `)
+               `);
 
                function searchBtn(){
                   var valueHistory = $(this)[0].innerText;
                 //  var inputHistory = $('.search').val();
                 //  inputHistory = valueHistory;
                  $('.search').val(valueHistory);
-                }
+                };
 
                 $('.btn-history').on('click', searchBtn); 
 
@@ -85,10 +82,8 @@ function getRecipe(event){
     };
 
 
-
 };
     
-
 
 function init(){
 
