@@ -3,17 +3,22 @@ var appId = '7b54d8ab';
 var searchRecipe = $('.search');
 var displayCard = $('.card-container');
 var headerCard = $('.main-header');
-var searchHistory = $('.search-history')
+var searchHistory = $('.search-history');
 
 
 function noFood(){
-    headerCard.html('<p>Please enter a food or ingredient to search</p>');
+    // updated from html to append so user can still use search bar
+    headerCard.append('<p>Please enter a food or ingredient to search</p>');
 
 }
 
 function displayRecipe(recipeData){
     displayCard.html('');
-    var food = searchRecipe.val().trim();
+
+    // commented it out below because food is not referenced again so can just call it.
+    //var food = searchRecipe.val().trim();
+
+    searchRecipe.val().trim();
 
     for(var i=0; i<12; i++){
         var data = recipeData.hits[i].recipe;
@@ -31,12 +36,12 @@ function displayRecipe(recipeData){
                <a href="${data.url}" class="btn btn-primary" target='_blank'>Link to the recipe page</a>
             </div>
         </div>
-    `)
+    `);
 
-    }
+    };
 
     
-}
+};
 
 function getRecipe(event){
     var food = searchRecipe.val().trim();
@@ -59,35 +64,46 @@ function getRecipe(event){
             
                `)
 
-               $('.btn-history').on('click', searchBtn); 
-
-
                function searchBtn(){
                   var valueHistory = $(this)[0].innerText;
-                  var inputHistory = $('.search').val();
-                  inputHistory = valueHistory;
-            
-                
+                //  var inputHistory = $('.search').val();
+                //  inputHistory = valueHistory;
+                 $('.search').val(valueHistory);
                 }
 
-            }
+                $('.btn-history').on('click', searchBtn); 
+
+            };
+
+            // clears search bar only have data retrieved
+            searchRecipe.val('');
  
-        })
+        });
 
     } else {
         noFood();
-    }
-
-    
+    };
 
 
-}
+
+};
     
 
 
 function init(){
+
+    // event when user presses enter key
+    searchRecipe.keypress(function (event) {
+
+        var key = event.which;
+         if (key == 13) {
+            getRecipe();
+         };
+    });
+
     $('.btn-search').on('click', getRecipe); 
-}
+};
+
 init();
 
 
