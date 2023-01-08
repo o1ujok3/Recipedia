@@ -134,9 +134,15 @@ header h3 {
     justify-content: center;
 }
 
-.card-container .card {
+.card {
     margin: 0% 5% 5% 5%;
     background: var(--pink);
+}
+
+.card-image {
+    object-fit: cover;
+    height: 286px;
+
 }
 
 .btn-primary {
@@ -147,6 +153,17 @@ header h3 {
 .btn-primary:hover {
     background-color: var(--middlegreen);
 
+}
+
+.modal-body {
+    margin: 5% 0;
+    display: grid;
+    grid-template-columns: repeat(3, 300px [col-start]);
+    justify-content: center;
+}
+
+.modal-dialog {
+    max-width: 1000px;
 }
 /*responsive styling*/
 
