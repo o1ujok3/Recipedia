@@ -118,14 +118,6 @@ header h3 {
     border: 1px solid #dfe1e5;
 
 }
-.card {
-      box-shadow: 0px 6px 10px darkgrey;
-      transition: 1s;
-}
-.card:hover {
-    transform: scale(1.2);
-
-}
 
 .card-container {
     margin: 5% 0;
@@ -135,14 +127,22 @@ header h3 {
 }
 
 .card {
+    box-shadow: 0px 6px 10px darkgrey;
+    transition: 1s;
     margin: 0% 5% 5% 5%;
     background: var(--pink);
 }
 
-.card-image {
-    object-fit: cover;
-    height: 286px;
+.card:hover {
+    transform: scale(1.2);
+    z-index: 1;
 
+}
+
+.card-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .btn-primary {
@@ -165,6 +165,16 @@ header h3 {
 .modal-dialog {
     max-width: 1000px;
 }
+
+.card-image {
+    object-fit: cover;
+    height: 150px;
+}
+
+.card-text {
+    font-size: 0.9rem;
+}
+
 /*responsive styling*/
 
 

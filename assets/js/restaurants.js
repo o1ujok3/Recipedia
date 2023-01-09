@@ -5,6 +5,8 @@ var restaurantCards ="";
 
 // function getting API data
 function displayRestaurants() {
+
+
     var settings = {
         "async": false,
         "crossDomain": true,
@@ -26,7 +28,6 @@ function displayRestaurants() {
 
         // loop does not break until number of restaurant cards produced reaches 10
         for (var i=0; restaurantResults < 11; i++) {
-
 
             // current number of cards
             restaurantResults = displayModalCard[0].children.length;
@@ -53,8 +54,6 @@ function displayRestaurants() {
              };
         };
     });
-    
-    launchModal();
 
 
 };
@@ -71,6 +70,8 @@ function launchModal() {
       });
 
     $('#restaurantsModal').modal('toggle');
+
+    displayRestaurants();
 };
 
 //store location data to a variable and call displayRestaurants
@@ -80,7 +81,7 @@ function success(position) {
     userLat = userGeoLocation.latitude;
     userLong = userGeoLocation.longitude;
 
-    displayRestaurants();
+    launchModal();
 };
 
 // function declarations to get location
@@ -89,6 +90,7 @@ function getLocation() {
     if (navigator.geolocation) {
 
         navigator.geolocation.getCurrentPosition(success);
+
 
     } else {
         alert("I'm sorry, geolocation is not supported by this browser.");
