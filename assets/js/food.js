@@ -39,6 +39,13 @@ function displayRecipe(recipeData){
     `);
 
     };
+
+    // scrolls to results
+    $('html, body').animate({
+        scrollTop: $(displayCard).offset().top
+    }, "slow");
+
+
     
 };
 
