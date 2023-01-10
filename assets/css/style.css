@@ -1,9 +1,9 @@
 :root {
-    --darkgreen: #296543;
-    --middlegreen: #63aa81;
-    --lightyellow: #FEFEE3;
-    --pink: #FFC9B9;
-    --orange: #D68C45;
+    --black: #0A090B;
+    --jasmine: #F2D686;
+    --darkred: #4d1801;
+    --red: #9A3002;
+    --gold: #967203;
 }
 
 * {
@@ -20,18 +20,25 @@ body {
 }
 
 body {
+    max-width: 100%;
     font-family: sans-serif;
-    background-color: var(--lightyellow);
+    background-color: rgb(28, 27, 27);
 
 }
 
 footer {
-    height: 95px;
-    background-color: #296543;
+    height: 80px;
+    background-color:var(--black);
     padding-left: 15px;
     display: flex;
     align-items: flex-end;
     justify-content: center;
+    color: #fffcee;
+
+}
+
+.footer {
+    font-size: 30px;
 }
 
 /*global classes*/
@@ -60,6 +67,8 @@ footer {
     align-items:center;
     flex-direction: column;
     justify-content: center;
+    background:url(../images/spaghetti-g19333eb92_1920.jpg) no-repeat fixed center;
+    background-size: cover;
     
 }
 header {
@@ -67,17 +76,19 @@ margin-bottom: 30px;
 }
 
 header h1 {
-    color: var(--darkgreen);
+    color: #fffcee;
     padding: 5px;
-    font-weight: bolder;
-    font-size: 50px;
+    font-size: 100px;
+    font-family: 'Rowdies';
 
 }
 
 header h3 {
-    color: var(--middlegreen);
-    font-size: 20px;
-    font-family: 'Lucida Sans';
+    color: #296543;
+    font-size: 35px;
+    font-family: 'Signika Negative';
+    text-shadow: 1px 1px 2px #fffcee;
+
 }
 
 .main-header {
@@ -128,14 +139,15 @@ header h3 {
 }
 
 .card {
-    box-shadow: 0px 6px 10px darkgrey;
+    box-shadow: 0px 2px 6px darkgrey;
     transition: 1s;
     margin: 0% 5% 5% 5%;
-    background: var(--pink);
+    background: rgb(62, 60, 60);
+    color: #fffcee;
 }
 
 .card:hover {
-    transform: scale(1.2);
+    transform: scale(1.1);
     z-index: 1;
 
 }
@@ -147,12 +159,12 @@ header h3 {
 }
 
 .btn-primary {
-    background-color: var(--orange);
+    background-color: var(--gold);
     border: none;
 }
 
 .btn-primary:hover {
-    background-color: var(--middlegreen);
+    background-color: #6e5302;
 
 }
 
@@ -167,6 +179,9 @@ header h3 {
     max-width: 1000px;
 }
 
+.modal-content {
+    background-color: rgba (255, 255, 255, 0.8);
+}
 .card-image {
     object-fit: cover;
     height: 150px;
@@ -178,4 +193,32 @@ header h3 {
 
 /*responsive styling*/
 
+@media only screen and (max-width: 400px) {
+    body{
+        width: 100%;
+       
+    }
 
+    .card-container {
+        display:flex ;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: center;
+    }
+    .card:hover {
+        transform: none;
+    }
+    
+    .main-header .search {
+        width: 120%;
+    }
+    
+    .main-header .search::placeholder{
+    font-size: small;
+}
+
+.hero-container {
+    height: 50vh;
+}
+
+}
