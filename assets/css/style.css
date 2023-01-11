@@ -96,7 +96,21 @@ header h3 {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column-reverse;
+    flex-direction: column;
+}
+
+.visible-alert {
+    display:block;
+    background-color:rgba(185, 56, 0, 0.6);
+    backdrop-filter: 10px;
+    padding: 2.5% 5%;
+    font-size: 1.5rem;
+    color: #fffcee;
+
+}
+
+.hidden-alert {
+    display: none;
 }
 
 .main-header .search {
