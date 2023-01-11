@@ -4,6 +4,7 @@ var searchRecipe = $('.search');
 var displayCard = $('.card-container');
 var headerCard = $('.main-header');
 var searchHistory = $('.search-history');
+var dataHistory = {};
 
 
 function noFood(){
@@ -57,30 +58,38 @@ function getRecipe(event){
         .then(function(recipeData){
             displayRecipe(recipeData);
 
-            var dataHistory = recipeData.hits[0].recipe;
+
+
+            //dataHistory = recipeData.hits[0].recipe;
+
+            dataHistory = JSON.parse(localStorage.getItem('search-history'));
+
+            dataHistory[food] = food;
+
     
-            localStorage.setItem(food, JSON.stringify(dataHistory));
-            var storedSearch = localStorage.getItem(food);
+            localStorage.setItem('search-history', JSON.stringify(dataHistory));
 
-            if(storedSearch){
-               searchHistory.append(`
-                  <button class='btn-search btn-history'>${food}</button>
+
+           // var storedSearch = localStorage.getItem(food);
+
+            // if(storedSearch){
+            //    searchHistory.append(`
+            //       <button class='btn-search btn-history'>${food}</button>
             
-               `);
+            //    `);
 
-               function searchBtn(){
-                  var valueHistory = $(this)[0].innerText;
-                //  var inputHistory = $('.search').val();
-                //  inputHistory = valueHistory;
-                 $('.search').val(valueHistory);
-                };
+            // //    function searchBtn(){
+            // //       var valueHistory = $(this)[0].innerText;
+            // //     //  var inputHistory = $('.search').val();
+            // //     //  inputHistory = valueHistory;
+            // //      $('.search').val(valueHistory);
+            // //     };
 
-                $('.btn-history').on('click', searchBtn); 
+            //     // $('.btn-history').on('click', searchBtn); 
 
-            };
+            // };
 
-            // clears search bar only have data retrieved
-            searchRecipe.val('');
+
  
         });
 
@@ -88,11 +97,28 @@ function getRecipe(event){
         noFood();
     };
 
-
+    // clears search bar only have data retrieved
+    searchRecipe.val('');
 };
+
+function searchBtn(){
+    var valueHistory = $(this)[0].innerText;
+  //  var inputHistory = $('.search').val();
+  //  inputHistory = valueHistory;
+   $('.search').val(valueHistory);
+  };
     
 
 function init(){
+
+    var storedSearch = JSON.parse(localStorage.getItem('search-history'));
+
+    for (prop in storedSearch) {
+        searchHistory.append(`
+        <button class='btn-search btn-history'>${prop}</button>
+  
+     `);
+    }
 
     // event when user presses enter key
     searchRecipe.keypress(function (event) {
@@ -103,7 +129,9 @@ function init(){
          };
     });
 
-    $('.btn-search').on('click', getRecipe); 
+    $('#btn-search').on('click', getRecipe); 
+
+    $('.btn-history').on('click', searchBtn); 
 };
 
 init();
