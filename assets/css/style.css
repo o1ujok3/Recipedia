@@ -206,7 +206,7 @@ header h3 {
 
 /*responsive styling*/
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 820px) {
     body{
         width: 100%;
        
@@ -231,7 +231,7 @@ header h3 {
 }
 
 .hero-container {
-    height: 50vh;
+    height: 100vh;
 }
 
 }
