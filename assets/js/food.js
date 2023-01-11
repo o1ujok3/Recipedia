@@ -8,7 +8,7 @@ var searchHistory = $('.search-history');
 
 function noFood(){
     // updated from html to append so user can still use search bar
-    headerCard.append('<p>Please enter a food or ingredient to search</p>');
+    headerCard.children('p').removeClass('hidden-alert');
 
 }
 
@@ -95,12 +95,20 @@ function getRecipe(event_or_text){
  
         });
 
+        var hasHiddenClass = headerCard.children('p').hasClass('hidden-alert');
+
+        if(!hasHiddenClass) {
+            headerCard.children('p').addClass('hidden-alert');
+        }
+
     } else {
         noFood();
     };
 
     // clears search bar only have data retrieved
     searchRecipe.val('');
+
+   
 };
 
 function searchBtn(){
