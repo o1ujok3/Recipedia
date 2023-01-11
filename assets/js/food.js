@@ -4,7 +4,6 @@ var searchRecipe = $('.search');
 var displayCard = $('.card-container');
 var headerCard = $('.main-header');
 var searchHistory = $('.search-history');
-var dataHistory = {};
 
 
 function noFood(){
@@ -21,7 +20,7 @@ function displayRecipe(recipeData){
 
     searchRecipe.val().trim();
 
-    for(var i=0; i<12; i++){
+    for(var i=0; i< recipeData.hits.length; i++){
         var data = recipeData.hits[i].recipe;
         var image = data.images.REGULAR.url;
         
@@ -50,8 +49,11 @@ function displayRecipe(recipeData){
     
 };
 
-function getRecipe(event){
-    var food = searchRecipe.val().trim();
+function getRecipe(event_or_text){
+    var isString = typeof event_or_text === 'string';
+    var food = isString ? event_or_text : searchRecipe.val().trim();
+
+    console.log('test');
 
     if(food){
         $.get(`https://api.edamam.com/api/recipes/v2?type=public&app_id=${appId}&app_key=${apiKey}&q=${food}`)
@@ -62,13 +64,13 @@ function getRecipe(event){
 
             //dataHistory = recipeData.hits[0].recipe;
 
-            dataHistory = JSON.parse(localStorage.getItem('search-history'));
+            var dataHistory = JSON.parse(localStorage.getItem('search-history')) || {};
 
             dataHistory[food] = food;
 
-    
             localStorage.setItem('search-history', JSON.stringify(dataHistory));
 
+            outputSearchHistory();
 
            // var storedSearch = localStorage.getItem(food);
 
@@ -106,19 +108,55 @@ function searchBtn(){
   //  var inputHistory = $('.search').val();
   //  inputHistory = valueHistory;
    $('.search').val(valueHistory);
-  };
-    
 
-function init(){
+   getRecipe(valueHistory);
+};
 
-    var storedSearch = JSON.parse(localStorage.getItem('search-history'));
+function getSearchHistory () {
+    return JSON.parse(localStorage.getItem('search-history')) || {};
+}
+
+function outputSearchHistory () {
+    var storedSearch = getSearchHistory();
+
+    searchHistory.empty();
 
     for (prop in storedSearch) {
+        //<button class='btn-search btn-history'>${prop}<span class='del-his-btn'>X</span></button>
         searchHistory.append(`
         <button class='btn-search btn-history'>${prop}</button>
   
      `);
     }
+
+}
+
+// function delHistoryItem (event)  {
+
+//     event.stopPropagation();
+
+//     var el = event.target;
+    
+//     console.log(el);
+
+//     var item = $(this).parent().text().slice(0, -1);
+
+//     console.log(item);
+
+//     var history = getSearchHistory();
+
+//     delete history[item];
+
+//     console.log(history);
+
+//     localStorage.setItem('search-history', JSON.stringify(history));
+
+
+// }   
+
+function init(){
+    
+    outputSearchHistory();
 
     // event when user presses enter key
     searchRecipe.keypress(function (event) {
@@ -131,7 +169,9 @@ function init(){
 
     $('#btn-search').on('click', getRecipe); 
 
-    $('.btn-history').on('click', searchBtn); 
+    $('.search-history').on('click', '.btn-history', searchBtn); 
+
+    // $('body').on('click', '.del-his-btn', delHistoryItem);
 };
 
 init();
