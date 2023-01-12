@@ -4,10 +4,15 @@ var searchRecipe = $('.search');
 var displayCard = $('.card-container');
 var headerCard = $('.main-header');
 var searchHistory = $('.search-history');
+var hasHiddenClass = headerCard.children('p').hasClass('hidden-alert');
 
 // function to alert user to search for food
 function noFood() {
-    headerCard.children('p').removeClass('hidden-alert');
+    
+    if(hasHiddenClass) {
+        headerCard.children('p').removeClass('hidden-alert');
+    };
+
 };
 
 // function to display api results based on user's search
@@ -76,9 +81,6 @@ function getRecipe(event_or_text) {
  
         });
 
-        // expression to check if text alert already hidden
-        var hasHiddenClass = headerCard.children('p').hasClass('hidden-alert');
-
         if(!hasHiddenClass) {
             headerCard.children('p').addClass('hidden-alert');
         }
@@ -93,10 +95,17 @@ function getRecipe(event_or_text) {
 
 
 // function to get text value from button clicked by user
-function searchBtn(){
-    var valueHistory = $(this)[0].innerText;
+function searchBtn(event){
 
-    getRecipe(valueHistory);
+    var isSpan = event.target.nodeName === 'SPAN';
+
+    if(!isSpan) {
+
+        var valueHistory = $(this)[0].innerText;
+
+        getRecipe(valueHistory);
+    }
+
 };
 
 // function to set search history in local storage
