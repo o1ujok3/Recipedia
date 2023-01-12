@@ -5,20 +5,15 @@ var displayCard = $('.card-container');
 var headerCard = $('.main-header');
 var searchHistory = $('.search-history');
 
+// function to alert user to search for food
+function noFood() {
+    headerCard.children('p').removeClass('hidden-alert');
+};
 
-function noFood(){
-    // updated from html to append so user can still use search bar
-    headerCard.append('<p>Please enter a food or ingredient to search</p>');
-
-}
-
+// function to display api results based on user's search
 function displayRecipe(recipeData){
+
     displayCard.html('');
-
-    // commented it out below because food is not referenced again so can just call it.
-    //var food = searchRecipe.val().trim();
-
-    searchRecipe.val().trim();
 
     for(var i=0; i< recipeData.hits.length; i++){
         var data = recipeData.hits[i].recipe;
@@ -40,119 +35,112 @@ function displayRecipe(recipeData){
 
     };
 
-    // scrolls to results
     $('html, body').animate({
         scrollTop: $(displayCard).offset().top
     }, "slow");
-
-
     
 };
 
-function getRecipe(event_or_text){
-    var isString = typeof event_or_text === 'string';
-    var food = isString ? event_or_text : searchRecipe.val().trim();
+// function to pass in food item and request data from API
+function getRecipe(event_or_text) {
 
-    console.log('test');
+    var isString = typeof event_or_text === 'string';
+
+    var food = isString ? event_or_text : searchRecipe.val().trim();
 
     if(food){
         $.get(`https://api.edamam.com/api/recipes/v2?type=public&app_id=${appId}&app_key=${apiKey}&q=${food}`)
         .then(function(recipeData){
-            displayRecipe(recipeData);
 
+            var hitsLength = recipeData.hits.length;
 
+            if (hitsLength > 0) {
 
-            //dataHistory = recipeData.hits[0].recipe;
+                displayRecipe(recipeData);
 
-            var dataHistory = JSON.parse(localStorage.getItem('search-history')) || {};
+                if (!isString) {
 
-            dataHistory[food] = food;
+                    var dataHistory = getSearchHistory();
 
-            localStorage.setItem('search-history', JSON.stringify(dataHistory));
+                    dataHistory[food] = food;
+        
+                    setSearchHistory(dataHistory);
+        
+                    outputSearchHistory();
 
-            outputSearchHistory();
+                };
 
-           // var storedSearch = localStorage.getItem(food);
-
-            // if(storedSearch){
-            //    searchHistory.append(`
-            //       <button class='btn-search btn-history'>${food}</button>
-            
-            //    `);
-
-            // //    function searchBtn(){
-            // //       var valueHistory = $(this)[0].innerText;
-            // //     //  var inputHistory = $('.search').val();
-            // //     //  inputHistory = valueHistory;
-            // //      $('.search').val(valueHistory);
-            // //     };
-
-            //     // $('.btn-history').on('click', searchBtn); 
-
-            // };
-
-
+            } else {
+                noFood();
+            };
  
         });
+
+        // expression to check if text alert already hidden
+        var hasHiddenClass = headerCard.children('p').hasClass('hidden-alert');
+
+        if(!hasHiddenClass) {
+            headerCard.children('p').addClass('hidden-alert');
+        }
 
     } else {
         noFood();
     };
 
-    // clears search bar only have data retrieved
     searchRecipe.val('');
+
 };
 
+
+// function to get text value from button clicked by user
 function searchBtn(){
     var valueHistory = $(this)[0].innerText;
-  //  var inputHistory = $('.search').val();
-  //  inputHistory = valueHistory;
-   $('.search').val(valueHistory);
 
-   getRecipe(valueHistory);
+    getRecipe(valueHistory);
 };
 
+// function to set search history in local storage
+function setSearchHistory (event) {
+    localStorage.setItem('search-history', JSON.stringify(event));
+};
+
+
+// function to get search history from local storage
 function getSearchHistory () {
     return JSON.parse(localStorage.getItem('search-history')) || {};
-}
+};
 
+// function to output food items previously searched into clickable buttons
 function outputSearchHistory () {
-    var storedSearch = getSearchHistory();
 
+    var storedSearch = getSearchHistory();
+    
     searchHistory.empty();
 
     for (prop in storedSearch) {
-        //<button class='btn-search btn-history'>${prop}<span class='del-his-btn'>X</span></button>
         searchHistory.append(`
-        <button class='btn-search btn-history'>${prop}</button>
-  
+        <button class='btn-search btn-history'>${prop}<span class='del-his-btn'>X</span></button>
      `);
-    }
+    };
 
-}
+};
 
-// function delHistoryItem (event)  {
+// function to delete items from local storage
+function delHistoryItem (event)  {
 
-//     event.stopPropagation();
+    event.stopPropagation();
 
-//     var el = event.target;
-    
-//     console.log(el);
+    var item = $(this).parent().text().slice(0, -1);
 
-//     var item = $(this).parent().text().slice(0, -1);
+    var history = getSearchHistory();
 
-//     console.log(item);
+    delete history[item];
 
-//     var history = getSearchHistory();
+    setSearchHistory(history);
 
-//     delete history[item];
+    outputSearchHistory();
 
-//     console.log(history);
-
-//     localStorage.setItem('search-history', JSON.stringify(history));
-
-
-// }   
+};   
 
 function init(){
     
@@ -171,7 +159,7 @@ function init(){
 
     $('.search-history').on('click', '.btn-history', searchBtn); 
 
-    // $('body').on('click', '.del-his-btn', delHistoryItem);
+    $('body').on('click', '.del-his-btn', delHistoryItem);
 };
 
 init();
