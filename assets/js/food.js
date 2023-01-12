@@ -4,12 +4,17 @@ var searchRecipe = $('.search');
 var displayCard = $('.card-container');
 var headerCard = $('.main-header');
 var searchHistory = $('.search-history');
-var hasHiddenClass = headerCard.children('p').hasClass('hidden-alert');
+
+
+function hasHiddenClass () {
+    return headerCard.children('p').hasClass('hidden-alert');
+
+}
 
 // function to alert user to search for food
 function noFood() {
     
-    if(hasHiddenClass) {
+    if(hasHiddenClass()) {
         headerCard.children('p').removeClass('hidden-alert');
     };
 
@@ -81,9 +86,10 @@ function getRecipe(event_or_text) {
  
         });
 
-        if(!hasHiddenClass) {
+        
+        if(!hasHiddenClass()) {
             headerCard.children('p').addClass('hidden-alert');
-        }
+        };
 
     } else {
         noFood();
