@@ -4,7 +4,7 @@ Recipedia is a recipe search application which allows users to input an ingredie
 [Link to the deployed project]()
 
 # Screenshot 
-![Screenshot of Recpiedia](assets/images/screenshot.png/ "Screen Shot of Recipedia")
+![Screenshot of Recipedia](assets/images/screenshot.png/ "Screen Shot of Recipedia")
 
 # Installation
 Clone the repo from github and run it on your local machine
