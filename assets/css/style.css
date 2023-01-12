@@ -159,10 +159,11 @@ header h3 {
 }
 
 .card-container {
-    margin: 5% 0;
+    margin: 5%, 0;
     display: grid;
     grid-template-columns: repeat(4, 300px [col-start]);
     justify-content: center;
+    gap: 25px;
 }
 
 .card {
@@ -200,6 +201,8 @@ header h3 {
     display: grid;
     grid-template-columns: repeat(3, 300px [col-start]);
     justify-content: center;
+    gap: 20px;
+
 }
 
 .modal-dialog {
@@ -223,9 +226,58 @@ header h3 {
 @media only screen and (max-width: 820px) {
     body{
         width: 100%;
-       
     }
 
+    .card-container {
+        margin: 5% 0;
+        display: grid;
+        grid-template-columns: repeat(2, 300px [col-start]);
+        justify-content: center;
+    }
+    .card:hover {
+        transform: none;
+    }
+    
+    .main-header .search {
+        width: 120%;
+    }
+    
+    .main-header .search::placeholder {
+    font-size: small;
+    }
+
+    .hero-container {
+    height: 100vh;
+    }
+
+    .modal-body {
+    display: grid;
+    grid-template-columns: repeat(2, 300px [col-start]);
+    justify-content: center;
+    margin: 5% 0;
+}
+
+}
+
+
+@media only screen and (max-width: 390px) {
+    body{
+        width: 100%;
+       
+    }
+    header h1 {
+        font-size: 9vh;
+    }
+    .container {
+        display: flex;
+        gap: 10px;
+
+    }
+    .search-history {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
     .card-container {
         display:flex ;
         flex-direction: column;
@@ -246,6 +298,14 @@ header h3 {
 
 .hero-container {
     height: 100vh;
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5% 5%;
+
 }
 
 }
