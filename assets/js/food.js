@@ -29,7 +29,6 @@ function displayRecipe(recipeData){
         var data = recipeData.hits[i].recipe;
         var image = data.images.REGULAR.url;
         
-
     displayCard.append(`
        <div class="card" style="width: 18rem">
             <img src="${image}"/>
@@ -37,7 +36,7 @@ function displayRecipe(recipeData){
                <h5 class="card-title">${data.label}</h5>
                <p class="card-text">calories: ${Math.round(data.calories)}</p>
                <p class="card-text">Number of servings: ${data.yield}</p>
-               <p class="card-text">Total Time: ${data.totalTime}mins</p>
+               <p class="card-text">Total Time: ${data.totalTime} mins</p>
                <a href="${data.url}" class="btn btn-primary" target='_blank'>Link to the recipe page</a>
             </div>
         </div>
