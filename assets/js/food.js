@@ -174,6 +174,7 @@ function init(){
     $('.search-history').on('click', '.btn-history', searchBtn); 
 
     $('body').on('click', '.del-his-btn', delHistoryItem);
+
 };
 
 init();
