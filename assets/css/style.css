@@ -26,8 +26,11 @@ body {
 
 }
 
+img {
+    object-fit: cover;
+}
+
 footer {
-    /*ADDED margin top*/
     margin-top: 5%;
     height: 80px;
     background-color:var(--black);
@@ -64,7 +67,6 @@ footer {
 /* custom styling */
 
 .hero-container {
-     /* UPDATED TO MIN HEIGHT */
     min-height: 100vh;
     display: flex;
     align-items:center;
@@ -72,7 +74,6 @@ footer {
     justify-content: center;
     background:url(../images/spaghetti-g19333eb92_1920.jpg) no-repeat fixed center;
     background-size: cover;
-    /* ADDED */
     margin-bottom: 5%;
     padding: 2.5%;
     
@@ -104,6 +105,7 @@ header h3 {
     align-items: center;
     flex-direction: column;
 }
+
 .visible-alert {
     display:block;
     background-color:rgba(185, 56, 0, 0.6);
@@ -112,9 +114,11 @@ header h3 {
     font-size: 1.5rem;
     color: #FFFCEE;
 }
+
 .hidden-alert {
     display: none;
 }
+
 .main-header .search {
     width: 750px;
     border-radius: 24px;
@@ -161,10 +165,7 @@ header h3 {
 }
 
 .card-container {
-    /* REMVOVED */
-   /* margin: 10%, 0;*/
     display: grid;
-    /* CHANGED */
     grid-template-columns: repeat(3, 300px [col-start]);
     justify-content: center;
     gap: 25px;
@@ -200,14 +201,13 @@ header h3 {
 
 }
 
-/* ADDED */
 
 .modal-content {
-    background-color: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(2px);
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    color: #fffcee;
+    font-size: 35px;
 }
-
-/* --------------*/
 
 .modal-body {
     margin: 5% 0;
@@ -215,21 +215,15 @@ header h3 {
     grid-template-columns: repeat(3, 300px [col-start]);
     justify-content: center;
     gap: 20px;
-
-    /*ADDED*/
-
     justify-items: center;
-
 }
-
-/* ADDED */
 
 .modal-dialog {
     max-width: 1000px;
 }
 
-.modal-content {
-    background-color: rgba (255, 255, 255, 0.8);
+.modal-dialog span {
+    color: #fffcee;
 }
 .card-image {
     object-fit: cover;
@@ -242,13 +236,9 @@ header h3 {
 
 /*responsive styling*/
 
-    /*CHANGED */
-
 @media only screen and (max-width: 1010px) {
 
     .card-container {
-        /*ADD MARGIN INTO MAIN CODE */
-       /* margin: 5% 0;*/
         display: grid;
         grid-template-columns: repeat(2, 300px [col-start]);
         justify-content: center;
@@ -265,21 +255,15 @@ header h3 {
     font-size: small;
     }
 
-    /*
-    .hero-container {
-    height: 100vh;
-    } */
-
-    /* ADDED */
     .modal-dialog {
         max-width: 650px;
+        margin: 1.75rem auto;
     }
 
     .modal-body {
     display: grid;
     grid-template-columns: repeat(2, 300px);
     justify-content: center;
-    /*margin: 5% 0;*/
 }
 
 }
@@ -317,24 +301,16 @@ header h3 {
     
     .main-header .search::placeholder{
     font-size: small;
-}
-    /* DELETE 
-    .hero-container {
-        height: 100vh;
-    } */
+    }
 
-    /* ADDED */
     .modal-dialog {
         max-width: 400px;
     }
     
-
     .modal-body {
         display: flex;
         flex-direction: column;
         align-items: center;
-       /* margin: 5% 5%;*/
-
     }
 
 }
