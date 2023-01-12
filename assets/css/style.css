@@ -234,6 +234,13 @@ header h3 {
     font-size: 0.9rem;
 }
 
+.fa-arrow-up {
+    position: fixed;
+    color: #fffcee;
+    font-size: 1.5rem;
+    bottom: 3%;
+    right: 4%;
+}
 /*responsive styling*/
 
 @media only screen and (max-width: 1010px) {
