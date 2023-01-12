@@ -98,21 +98,17 @@ header h3 {
     align-items: center;
     flex-direction: column;
 }
-
 .visible-alert {
     display:block;
     background-color:rgba(185, 56, 0, 0.6);
     backdrop-filter: 10px;
     padding: 2.5% 5%;
     font-size: 1.5rem;
-    color: #fffcee;
-
+    color: #FFFCEE;
 }
-
 .hidden-alert {
     display: none;
 }
-
 .main-header .search {
     width: 750px;
     border-radius: 24px;
@@ -252,7 +248,7 @@ header h3 {
 
     .modal-body {
     display: grid;
-    grid-template-columns: repeat(2, 300px [col-start]);
+    grid-template-columns: repeat(2, 300px);
     justify-content: center;
     margin: 5% 0;
 }
