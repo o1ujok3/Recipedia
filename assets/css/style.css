@@ -238,7 +238,7 @@ header h3 {
 
     .modal-body {
     display: grid;
-    grid-template-columns: repeat(2, 300px [col-start]);
+    grid-template-columns: repeat(2, 300px);
     justify-content: center;
     margin: 5% 0;
 }
