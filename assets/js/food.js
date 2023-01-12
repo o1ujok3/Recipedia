@@ -100,8 +100,8 @@ function searchBtn(event){
     var isSpan = event.target.nodeName === 'SPAN';
 
     if(!isSpan) {
-
-        var valueHistory = $(this)[0].innerText;
+        
+        var valueHistory = $(this)[0].innerText.slice(0, -1);
 
         getRecipe(valueHistory);
     }
